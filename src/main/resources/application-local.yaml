@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: magazine-service
+  datasource:
+    url:
+    username:
+    password:

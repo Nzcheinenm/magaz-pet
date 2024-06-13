@@ -1,2 +1,7 @@
-package ru.pet.nzcheinenm.controller;public class MagazineController {
+package ru.pet.nzcheinenm.controller;
+
+import org.springframework.web.bind.annotation.RestController;
+
+public class MagazineController {
+
 }
