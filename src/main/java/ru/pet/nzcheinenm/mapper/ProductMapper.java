@@ -7,5 +7,6 @@ import ru.pet.nzcheinenm.entity.Product;
 @Mapper
 public interface ProductMapper {
     Product convert(ProductDto dto);
+
     ProductDto convert(Product dto);
 }

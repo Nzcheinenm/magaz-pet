@@ -70,8 +70,7 @@ dependencies {
 	implementation 'org.springframework.kafka:spring-kafka'
 
 	//open-api
-	implementation "org.springdoc:springdoc-openapi-webflux-core:${springDocOpenApiVersion}"
-	implementation "org.springdoc:springdoc-openapi-webflux-ui:${springDocOpenApiVersion}"
+	implementation 'org.springdoc:springdoc-openapi-starter-webflux-ui:2.3.0'
 
 	//swagger
 	implementation "io.swagger.core.v3:swagger-annotations:${swaggerAnnotationsVersion}"

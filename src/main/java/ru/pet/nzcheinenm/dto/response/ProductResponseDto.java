@@ -6,4 +6,6 @@ import lombok.Value;
 @Value
 @Builder
 public class ProductResponseDto {
+    String name;
+    Integer price;
 }

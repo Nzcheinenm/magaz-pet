@@ -61,14 +61,14 @@ spring:
       max-poll-records: 500
     security:
       protocol: PLAINTEXT
-#  security:
-#    oauth2:
-#      client:
-#        registration:
-#          client-id: user
-#          client-secret: secret
-#        provider:
-#          token-uri: http://localhost:8090/passport/oauth2/token
+  #  security:
+  #    oauth2:
+  #      client:
+  #        registration:
+  #          client-id: user
+  #          client-secret: secret
+  #        provider:
+  #          token-uri: http://localhost:8090/passport/oauth2/token
   data:
     redis:
       host: localhost
