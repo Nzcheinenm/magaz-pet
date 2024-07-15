@@ -38,6 +38,13 @@ dependencies {
 	implementation group: 'org.postgresql', name: 'r2dbc-postgresql', version: '1.0.1.RELEASE'
 	implementation group: 'org.postgresql', name: 'postgresql', version: '42.5.6'
 
+	// spring boot
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.boot:spring-boot-configuration-processor'
+//	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+	implementation "org.springframework.boot:spring-boot-starter-data-redis-reactive"
+	annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+
 	//migration
 	implementation 'org.liquibase:liquibase-core'
 	implementation group: 'net.lbruun.springboot', name: 'preliquibase-spring-boot-starter', version: '1.4.0'
@@ -46,9 +53,28 @@ dependencies {
 	runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
 	annotationProcessor 'org.projectlombok:lombok'
 
+	//bucket4j
+	implementation "com.bucket4j:bucket4j-core:${bucket4jRedisVersion}"
+
+	// monitoring
+	implementation "org.springframework.boot:spring-boot-starter-actuator"
+
+	// mapstruct
+	implementation "org.mapstruct:mapstruct:${mapStructVersion}"
+
+	// apache utils
+	implementation "org.apache.commons:commons-collections4:${apacheCommonsCollectionsVersion}"
+
+	// kafka
+	implementation "io.projectreactor.kafka:reactor-kafka:${reactorKafkaVersion}"
+	implementation 'org.springframework.kafka:spring-kafka'
+
+	//open-api
+	implementation "org.springdoc:springdoc-openapi-webflux-core:${springDocOpenApiVersion}"
+	implementation "org.springdoc:springdoc-openapi-webflux-ui:${springDocOpenApiVersion}"
+
 	//swagger
 	implementation "io.swagger.core.v3:swagger-annotations:${swaggerAnnotationsVersion}"
-
 
 	// test
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'

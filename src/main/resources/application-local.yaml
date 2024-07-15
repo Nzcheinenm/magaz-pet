@@ -7,9 +7,12 @@ preliquibase:
 
 spring:
   application:
-    name: magazine-service
+    name: ${magazine-service.service-name}
   webflux:
-    base-path: ${notification-adapter.base-path}
+    base-path: ${magazine-service.base-path}
+  cloud:
+    config:
+      enabled: false
   jpa:
     default_schema: magazine_service_scheme
     hibernate:
@@ -58,14 +61,14 @@ spring:
       max-poll-records: 500
     security:
       protocol: PLAINTEXT
-  security:
-    oauth2:
-      client:
-        registration:
-          client-id: user
-          client-secret: secret
-        provider:
-          token-uri: http://localhost:8090/passport/oauth2/token
+#  security:
+#    oauth2:
+#      client:
+#        registration:
+#          client-id: user
+#          client-secret: secret
+#        provider:
+#          token-uri: http://localhost:8090/passport/oauth2/token
   data:
     redis:
       host: localhost
@@ -79,3 +82,24 @@ spring:
     url: r2dbc:postgresql://localhost:5432/postgres
     username: postgres
     password: postgres
+
+management:
+  info:
+    java:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include:
+          - info
+          - health
+          - prometheus
+          - httptrace
+          - cache
+          - caches
+          - loggers
+          - metrics
+          - sessions
+          - threaddump
+          - heapdump
+          - configprops
