@@ -1,0 +1,105 @@
+magazine-service:
+  service-name: magazine-service
+  base-path: /api/v1
+
+preliquibase:
+  sql-script-references: "classpath:database/preliquibase/schema.sql"
+
+spring:
+  application:
+    name: ${magazine-service.service-name}
+  webflux:
+    base-path: ${magazine-service.base-path}
+  cloud:
+    config:
+      enabled: false
+  jpa:
+    default_schema: magazine_service_scheme
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    open-in-view: false
+    database-platform: org.hibernate.dialect.PostgreSQL95Dialect
+    properties:
+      hibernate:
+        show_sql: false
+        default_schema: ${spring.jpa.default_schema}
+    database: POSTGRESQL
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+    hikari:
+      maximum-pool-size: 10
+      connection-timeout: 7000
+    driver-class-name:
+  liquibase:
+    enabled: true
+    url: ${spring.datasource.url}
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+    default-schema: ${spring.jpa.default_schema}
+    change-log: "classpath:database/changelog/changelog.xml"
+    drop-first: true
+    driver-class-name: ${spring.datasource.driver-class-name}
+  kafka:
+    admin:
+      enabled: true
+      topic:
+        enabled: true
+        partitions: 1
+        replicas: 1
+        retention-ms: 86000
+    producer:
+      enabled: true
+      bootstrap-servers: localhost:9092
+      topic-name: name-topic
+    consumer:
+      enabled: true
+      bootstrap-servers: localhost:9092
+      topic-name: rcvr_segmentation_notification_mass_sending_rq
+      max-poll-records: 500
+    security:
+      protocol: PLAINTEXT
+  #  security:
+  #    oauth2:
+  #      client:
+  #        registration:
+  #          client-id: user
+  #          client-secret: secret
+  #        provider:
+  #          token-uri: http://localhost:8090/passport/oauth2/token
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: admin
+      enabled: true
+    r2dbc:
+      repositories:
+        enabled: true
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+
+management:
+  info:
+    java:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include:
+          - info
+          - health
+          - prometheus
+          - httptrace
+          - cache
+          - caches
+          - loggers
+          - metrics
+          - sessions
+          - threaddump
+          - heapdump
+          - configprops
