@@ -28,6 +28,16 @@ repositories {
 	mavenCentral()
 }
 
+compileJava {
+	options.compilerArgs += [
+			'-Amapstruct.suppressGeneratorTimestamp=true',
+			'-Amapstruct.suppressGeneratorVersionInfoComment=true',
+			'-Amapstruct.verbose=true',
+			'-Amapstruct.unmappedTargetPolicy=ERROR',
+			'-Amapstruct.defaultComponentModel=spring'
+	]
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 
@@ -61,6 +71,7 @@ dependencies {
 
 	// mapstruct
 	implementation "org.mapstruct:mapstruct:${mapStructVersion}"
+	annotationProcessor "org.mapstruct:mapstruct-processor:${mapStructVersion}"
 
 	// apache utils
 	implementation "org.apache.commons:commons-collections4:${apacheCommonsCollectionsVersion}"

@@ -23,6 +23,11 @@
             <column name="phone" type="varchar(30)"/>
             <column name="email" type="varchar(254)"/>
             <column name="text" type="varchar(2000)"/>
+            <column name="external_id" type="varchar(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="group" type="varchar(100)"/>
+            <column name="price" type="bigint"/>
         </createTable>
     </changeSet>
 </databaseChangeLog>

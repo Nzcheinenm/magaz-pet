@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Version;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -29,4 +30,8 @@ public class Product {
     String phone;
     String email;
     String text;
+    @NotBlank
+    String externalId;
+    String group;
+    Integer price;
 }

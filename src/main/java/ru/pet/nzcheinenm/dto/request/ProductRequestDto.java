@@ -1,6 +1,5 @@
-package ru.pet.nzcheinenm.dto.entity;
+package ru.pet.nzcheinenm.dto.request;
 
-import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 import lombok.Value;
@@ -9,13 +8,9 @@ import java.time.LocalDateTime;
 
 @Value
 @Builder
-public class ProductDto {
-    @NotBlank
-    String id;
+public class ProductRequestDto {
     String type;
     String status;
-    String messageId;
-    LocalDateTime createdDate;
     String phone;
     String email;
     String text;
