@@ -45,19 +45,20 @@ spring:
   kafka:
     admin:
       enabled: true
+      bootstrap-servers: localhost:9092
       topic:
         enabled: true
         partitions: 1
         replicas: 1
         retention-ms: 86000
+        topic-name: product_topic_sending_rs
     producer:
       enabled: true
       bootstrap-servers: localhost:9092
-      topic-name: name-topic
     consumer:
       enabled: true
       bootstrap-servers: localhost:9092
-      topic-name: rcvr_segmentation_notification_mass_sending_rq
+      topic-name: product_topic_sending_rq
       max-poll-records: 500
     security:
       protocol: PLAINTEXT
