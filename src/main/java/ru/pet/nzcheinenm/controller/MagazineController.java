@@ -3,7 +3,6 @@ package ru.pet.nzcheinenm.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import ru.pet.nzcheinenm.controller.swagger.Default200ApiResponse;
-import ru.pet.nzcheinenm.dto.PageWrapper;
 import ru.pet.nzcheinenm.dto.request.ProductRequestDto;
 import ru.pet.nzcheinenm.dto.response.ProductResponseDto;
 import ru.pet.nzcheinenm.service.ProductService;
@@ -25,6 +23,7 @@ import ru.pet.nzcheinenm.service.ProductService;
 public class MagazineController {
     public static final String GET_PATH = "/products";
     public static final String SAVE_PATH = "/product";
+    public static final String SEND_TO_KAFKA_PATH = "/product-kafka";
 
     private final ProductService productService;
     private final ObjectMapper objectMapper;
@@ -49,6 +48,16 @@ public class MagazineController {
     ) throws JsonProcessingException {
         log.info("[START] Request to saveProduct, product={}", objectMapper.writeValueAsString(requestDto));
         return productService.saveProduct(requestDto);
+    }
+
+    @Default200ApiResponse
+    @Operation(description = "Передача информации в канал кафки по товарам")
+    @PostMapping(value = SEND_TO_KAFKA_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Mono<Void> sendToKafka(
+            @RequestBody ProductRequestDto requestDto
+    ) throws JsonProcessingException {
+        log.info("[START] Request to sendToKafka, product={}", objectMapper.writeValueAsString(requestDto));
+        return productService.sendToKafka(requestDto);
     }
 
 }
