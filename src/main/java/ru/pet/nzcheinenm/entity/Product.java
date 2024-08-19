@@ -32,6 +32,6 @@ public class Product {
     String text;
     @NotBlank
     String externalId;
-    String group;
+    String groupType;
     Integer price;
 }

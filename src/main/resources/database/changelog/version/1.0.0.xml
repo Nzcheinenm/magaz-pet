@@ -26,8 +26,8 @@
             <column name="external_id" type="varchar(36)">
                 <constraints nullable="false"/>
             </column>
-            <column name="group" type="varchar(100)"/>
-            <column name="price" type="bigint"/>
+            <column name="group_type" type="varchar(100)"/>
+            <column name="price" type="int"/>
         </createTable>
     </changeSet>
 </databaseChangeLog>

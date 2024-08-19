@@ -7,6 +7,9 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.config.annotation.method.configuration.EnableReactiveMethodSecurity;
+import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -18,6 +21,7 @@ import ru.pet.nzcheinenm.service.ProductService;
 
 @Slf4j
 @RestController
+@EnableWebFluxSecurity
 @RequiredArgsConstructor
 @Tag(name = "Товары", description = "API для товаров")
 public class MagazineController {
@@ -29,6 +33,7 @@ public class MagazineController {
     private final ObjectMapper objectMapper;
 
     @Default200ApiResponse
+    @PreAuthorize("hasRole('ADMIN')")
     @Operation(description = "Получение информации по товарам")
     @GetMapping(value = GET_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
     public Flux<ProductResponseDto> getProducts(
@@ -41,6 +46,7 @@ public class MagazineController {
     }
 
     @Default200ApiResponse
+    @PreAuthorize("hasRole('ADMIN')")
     @Operation(description = "Сохранение информации по товарам")
     @PostMapping(value = SAVE_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<ProductResponseDto> saveProduct(
@@ -51,6 +57,7 @@ public class MagazineController {
     }
 
     @Default200ApiResponse
+    @PreAuthorize("hasRole('ADMIN')")
     @Operation(description = "Передача информации в канал кафки по товарам")
     @PostMapping(value = SEND_TO_KAFKA_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<Void> sendToKafka(

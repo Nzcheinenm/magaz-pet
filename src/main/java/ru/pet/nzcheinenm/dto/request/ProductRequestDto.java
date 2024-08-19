@@ -4,8 +4,6 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 import lombok.Value;
 
-import java.time.LocalDateTime;
-
 @Value
 @Builder
 public class ProductRequestDto {
@@ -16,6 +14,6 @@ public class ProductRequestDto {
     String text;
     @NotBlank
     String externalId;
-    String group;
+    String groupType;
     Integer price;
 }

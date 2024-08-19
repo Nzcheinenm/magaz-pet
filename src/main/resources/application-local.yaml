@@ -62,14 +62,7 @@ spring:
       max-poll-records: 500
     security:
       protocol: PLAINTEXT
-  #  security:
-  #    oauth2:
-  #      client:
-  #        registration:
-  #          client-id: user
-  #          client-secret: secret
-  #        provider:
-  #          token-uri: http://localhost:8090/passport/oauth2/token
+
   data:
     redis:
       host: localhost
@@ -83,6 +76,8 @@ spring:
     url: r2dbc:postgresql://localhost:5432/postgres
     username: postgres
     password: postgres
+    properties:
+      schema: magazine_service_scheme
 
 management:
   info:

@@ -1,6 +1,5 @@
 package ru.pet.nzcheinenm.dto.entity;
 
-import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 import lombok.Value;
@@ -21,6 +20,6 @@ public class ProductDto {
     String text;
     @NotBlank
     String externalId;
-    String group;
+    String groupType;
     Integer price;
 }
