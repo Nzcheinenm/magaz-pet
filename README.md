@@ -3,6 +3,6 @@
 ## DEVELOPER INFO
 NAME: Дмитрий Кононов
 
-E-MAIL: dkononov@nota.tech
+E-MAIL: fizik29@yandex.ru
 
 COMPANY: nota.tech

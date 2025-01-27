@@ -48,7 +48,7 @@ services:
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9093
       KAFKA_CLUSTERS_0_ZOOKEEPER: localhost:2181
   cache:
-    image: redis:6.2.8-alpine
+    image: redis:7.2.4-alpine
     command: /bin/sh -c "redis-server --requirepass admin"
     ports:
       - "6379:6379"
