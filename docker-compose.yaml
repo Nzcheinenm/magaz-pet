@@ -47,11 +47,34 @@ services:
       KAFKA_CLUSTERS_0_NAME: local
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9093
       KAFKA_CLUSTERS_0_ZOOKEEPER: localhost:2181
-  cache:
-    image: redis:7.2.4-alpine
-    command: /bin/sh -c "redis-server --requirepass admin"
+  redis:
+    image: redis:7.2.4
+    container_name: redis
+    restart: on-failure
+    volumes:
+      - ./data:/var/lib/redis
+      - ./redis.conf:/usr/local/etc/redis/redis.conf
     ports:
-      - "6379:6379"
+      - 6379:6379
+    environment:
+      - REDIS_REPLICATION_MODE=master
+      - REDIS_PASSWORD=pass
+      - REDIS_USER=user
+      - REDIS_USER_PASSWORD=pass
+
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    restart: always
+    environment:
+      REDIS_HOSTS: redis
+      REDIS_HOST: redis
+      REDIS_PORT: redis:6379
+      REDIS_USERNAME: user
+      REDIS_PASSWORD: pass
+      HTTP_USER: root
+      HTTP_PASSWORD: root
+    ports:
+      - 7171:8081
 
 volumes:
   zookeeper_data:
