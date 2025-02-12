@@ -6,14 +6,10 @@ import lombok.Value;
 
 @Value
 @Builder
-public class ProductRequestDto {
+public class ProductRequestKafkaDto {
+    @NotBlank
+    String id;
     String type;
     String status;
-    String phone;
-    String email;
-    String text;
-    @NotBlank
-    String externalId;
-    String groupType;
-    Integer price;
+    String messageId;
 }

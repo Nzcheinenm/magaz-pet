@@ -26,7 +26,7 @@ spring:
         default_schema: ${spring.jpa.default_schema}
     database: POSTGRESQL
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
+    url: r2dbc:tc:postgresql:///postgres?TC_IMAGE_TAG=9.6.8
     username: postgres
     password: postgres
     hikari:
@@ -73,7 +73,7 @@ spring:
       repositories:
         enabled: true
   r2dbc:
-    url: r2dbc:postgresql://localhost:5432/postgres
+    url: r2dbc:tc:postgresql:///postgres?TC_IMAGE_TAG=9.6.8
     username: postgres
     password: postgres
     properties:

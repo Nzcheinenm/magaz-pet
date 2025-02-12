@@ -43,7 +43,7 @@ public class DatabaseProductService {
         var probeBuilder = Product.builder();
         probeBuilder.externalId(externalId);
         if (Strings.isNotBlank(group)) {
-            probeBuilder.group(group);
+            probeBuilder.groupType(group);
         }
         if (Objects.nonNull(price)) {
             probeBuilder.price(price);
