@@ -91,8 +91,11 @@ dependencies {
 	testImplementation 'io.projectreactor:reactor-test'
 	testImplementation 'org.springframework.kafka:spring-kafka-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-	testImplementation group: 'org.testcontainers', name: 'postgresql', version: '1.18.0'
 	testImplementation 'org.mockito:mockito-inline:3.11.0'
+	testImplementation "org.testcontainers:junit-jupiter:1.20.4"
+	testImplementation 'org.testcontainers:postgresql:1.20.4'
+	testImplementation 'org.testcontainers:testcontainers:1.20.4'
+	testImplementation 'org.testcontainers:kafka:1.20.4'
 }
 
 tasks.named('test') {
