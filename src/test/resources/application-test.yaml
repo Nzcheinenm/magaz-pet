@@ -6,6 +6,9 @@ preliquibase:
   sql-script-references: "classpath:database/preliquibase/schema.sql"
 
 spring:
+  sql:
+    init:
+      mode: always
   application:
     name: ${magazine-service.service-name}
   webflux:
@@ -17,16 +20,16 @@ spring:
     default_schema: magazine_service_scheme
     hibernate:
       ddl-auto: none
-    show-sql: false
+    show-sql: true
     open-in-view: false
     database-platform: org.hibernate.dialect.PostgreSQL95Dialect
     properties:
       hibernate:
-        show_sql: false
+        show_sql: true
         default_schema: ${spring.jpa.default_schema}
     database: POSTGRESQL
   datasource:
-    url: r2dbc:tc:postgresql:///postgres?TC_IMAGE_TAG=9.6.8
+    url: jdbc:tc:postgresql:///databasename?TC_IMAGE_TAG=9.6.8?TC_INITSCRIPT=file:src/main/resources/database/preliquibase/schema.sql
     username: postgres
     password: postgres
     hikari:
@@ -40,11 +43,11 @@ spring:
     password: ${spring.datasource.password}
     default-schema: ${spring.jpa.default_schema}
     change-log: "classpath:database/changelog/changelog.xml"
-    drop-first: true
+    drop-first: false
     driver-class-name: ${spring.datasource.driver-class-name}
   kafka:
     admin:
-      enabled: true
+      enabled: false
       bootstrap-servers: localhost:9092
       topic:
         enabled: true
@@ -73,7 +76,7 @@ spring:
       repositories:
         enabled: true
   r2dbc:
-    url: r2dbc:tc:postgresql:///postgres?TC_IMAGE_TAG=9.6.8
+    url: r2dbc:tc:postgresql:///databasename?TC_IMAGE_TAG=9.6.8?TC_INITSCRIPT=file:src/main/resources/database/preliquibase/schema.sql
     username: postgres
     password: postgres
     properties:
