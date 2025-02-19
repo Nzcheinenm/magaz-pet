@@ -29,7 +29,7 @@ spring:
         default_schema: ${spring.jpa.default_schema}
     database: POSTGRESQL
   datasource:
-    url: jdbc:tc:postgresql:///databasename?TC_IMAGE_TAG=9.6.8?TC_INITSCRIPT=file:src/main/resources/database/preliquibase/schema.sql
+    url: jdbc:tc:postgresql:///postgres?TC_IMAGE_TAG=9.6.8?TC_INITSCRIPT=file:src/main/resources/database/preliquibase/schema.sql
     username: postgres
     password: postgres
     hikari:
@@ -76,9 +76,9 @@ spring:
       repositories:
         enabled: true
   r2dbc:
-    url: r2dbc:tc:postgresql:///databasename?TC_IMAGE_TAG=9.6.8?TC_INITSCRIPT=file:src/main/resources/database/preliquibase/schema.sql
     username: postgres
     password: postgres
+    database: postgres
     properties:
       schema: magazine_service_scheme
 

@@ -54,7 +54,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 	implementation "org.springframework.boot:spring-boot-starter-data-redis-reactive"
 	annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
-
+	compileOnly 'org.projectlombok:lombok-maven-plugin:1.18.20.0'
 	//migration
 	implementation 'org.liquibase:liquibase-core'
 	implementation group: 'net.lbruun.springboot', name: 'preliquibase-spring-boot-starter', version: '1.4.0'
