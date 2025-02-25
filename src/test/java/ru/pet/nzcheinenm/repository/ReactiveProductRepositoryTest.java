@@ -1,17 +1,16 @@
-package ru.pet.nzcheinenm.service;
+package ru.pet.nzcheinenm.repository;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.pet.nzcheinenm.BaseTest;
 import ru.pet.nzcheinenm.entity.Product;
-import ru.pet.nzcheinenm.repository.ReactiveProductRepository;
 
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class DatabaseServiceTest extends BaseTest {
+public class ReactiveProductRepositoryTest extends BaseTest {
     @Autowired
     ReactiveProductRepository repository;
 
