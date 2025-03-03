@@ -7,7 +7,9 @@ import lombok.Value;
 @Value
 @Builder
 public class ProductRequestDto {
+    @NotBlank
     String type;
+    @NotBlank
     String status;
     String phone;
     String email;
