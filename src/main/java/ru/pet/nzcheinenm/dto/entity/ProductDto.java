@@ -6,20 +6,19 @@ import lombok.Value;
 
 import java.time.LocalDateTime;
 
-@Value
 @Builder
-public class ProductDto {
+public record ProductDto (
     @NotBlank
-    String id;
-    String type;
-    String status;
-    String messageId;
-    LocalDateTime createdDate;
-    String phone;
-    String email;
-    String text;
+    String id,
+    String type,
+    String status,
+    String messageId,
+    LocalDateTime createdDate,
+    String phone,
+    String email,
+    String text,
     @NotBlank
-    String externalId;
-    String groupType;
-    Integer price;
-}
+    String externalId,
+    String groupType,
+    Integer price
+){}
