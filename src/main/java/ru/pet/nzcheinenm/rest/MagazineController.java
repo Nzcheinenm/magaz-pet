@@ -1,4 +1,4 @@
-package ru.pet.nzcheinenm.controller;
+package ru.pet.nzcheinenm.rest;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,9 +12,9 @@ import org.springframework.security.config.annotation.web.reactive.EnableWebFlux
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import ru.pet.nzcheinenm.controller.swagger.Default200ApiResponse;
 import ru.pet.nzcheinenm.dto.request.ProductRequestDto;
 import ru.pet.nzcheinenm.dto.response.ProductResponseDto;
+import ru.pet.nzcheinenm.rest.swagger.Default200ApiResponse;
 import ru.pet.nzcheinenm.service.ProductService;
 
 

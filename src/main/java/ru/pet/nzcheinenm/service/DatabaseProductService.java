@@ -12,6 +12,7 @@ import ru.pet.nzcheinenm.dto.entity.ProductDto;
 import ru.pet.nzcheinenm.entity.Product;
 import ru.pet.nzcheinenm.mapper.ProductMapper;
 import ru.pet.nzcheinenm.repository.ReactiveProductRepository;
+import ru.pet.nzcheinenm.types.StatusType;
 
 import java.util.Objects;
 
@@ -28,9 +29,13 @@ public class DatabaseProductService {
         return repository.save(product);
     }
 
-    public Flux<ProductDto> findAll(@NotBlank String externalId,
-                                    String group,
-                                    Integer price) {
+    public Flux<ProductDto> findAllByStatus(StatusType status) {
+        return repository.findAllByStatus(status.name()).map(productMapper::convert);
+    }
+
+    public Flux<ProductDto> findAllByExternalIdAndGroupAndPrice(@NotBlank String externalId,
+                                                                String group,
+                                                                Integer price) {
         var probe = constructProduct(externalId, group, price)
                 .build();
         Example<Product> productExample = Example.of(probe);

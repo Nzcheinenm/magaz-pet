@@ -1,6 +1,8 @@
 magazine-service:
   service-name: magazine-service
   base-path: /api/v1
+  scheduler:
+    cron: 0 0 3 * * *
 
 preliquibase:
   sql-script-references: "classpath:database/preliquibase/schema.sql"

@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.pet.nzcheinenm.types.StatusType;
 
 import java.time.LocalDateTime;
 
@@ -24,7 +25,7 @@ public class Product {
     @Id
     String id;
     String type;
-    String status;
+    StatusType status;
     String messageId;
     LocalDateTime createdDate;
     String phone;
