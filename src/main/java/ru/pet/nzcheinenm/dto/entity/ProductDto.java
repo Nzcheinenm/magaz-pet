@@ -2,6 +2,7 @@ package ru.pet.nzcheinenm.dto.entity;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
+import ru.pet.nzcheinenm.types.StatusType;
 
 import java.time.LocalDateTime;
 
@@ -10,7 +11,7 @@ public record ProductDto(
         @NotBlank
         String id,
         String type,
-        String status,
+        StatusType status,
         String messageId,
         LocalDateTime createdDate,
         String phone,

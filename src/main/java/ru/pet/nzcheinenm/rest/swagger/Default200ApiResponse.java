@@ -1,4 +1,4 @@
-package ru.pet.nzcheinenm.controller.swagger;
+package ru.pet.nzcheinenm.rest.swagger;
 
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 

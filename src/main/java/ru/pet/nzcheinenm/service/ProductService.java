@@ -22,7 +22,7 @@ public class ProductService {
     public Flux<ProductResponseDto> getProducts(Integer price,
                                                 String group,
                                                 String externalId) {
-        Flux<ProductDto> products = databaseProductService.findAll(externalId, group, price);
+        Flux<ProductDto> products = databaseProductService.findAllByExternalIdAndGroupAndPrice(externalId, group, price);
         return products.map(productMapper::convertToResponse);
     }
 
