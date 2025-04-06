@@ -30,4 +30,8 @@
             <column name="price" type="int"/>
         </createTable>
     </changeSet>
+
+    <changeSet id="add_product_tag" author="Dmitry">
+        <tagDatabase tag="1.0.0"/>
+    </changeSet>
 </databaseChangeLog>
