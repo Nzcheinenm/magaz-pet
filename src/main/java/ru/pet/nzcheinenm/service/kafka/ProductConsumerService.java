@@ -7,7 +7,7 @@ import ru.pet.nzcheinenm.dto.request.KafkaConsumeRequestDto;
 @Service
 public class ProductConsumerService {
 
-    @KafkaListener(topics = "${spring.kafka.consumer.topic-name:test_topic_rq}")
+    @KafkaListener(topics = "${spring.kafka.consumer.topic-name:test_topic_rq}", groupId = "${magazine-service.service-name}")
     public void consume(KafkaConsumeRequestDto data) {
         return;
     }

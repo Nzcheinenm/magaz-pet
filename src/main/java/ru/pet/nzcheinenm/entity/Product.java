@@ -1,14 +1,10 @@
 package ru.pet.nzcheinenm.entity;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.persistence.Version;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 import ru.pet.nzcheinenm.types.StatusType;
 
 import java.time.LocalDateTime;
@@ -16,14 +12,11 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @Table
-@Builder
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Product {
-    @Version
-    Integer version;
-    @Id
-    String id;
+@EqualsAndHashCode(callSuper = true)
+public class Product extends BaseEntity {
     String type;
     StatusType status;
     String messageId;
