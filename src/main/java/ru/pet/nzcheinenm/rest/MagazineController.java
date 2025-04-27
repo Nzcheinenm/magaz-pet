@@ -12,9 +12,11 @@ import org.springframework.security.config.annotation.web.reactive.EnableWebFlux
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import ru.pet.nzcheinenm.dto.request.NewsRequestDto;
 import ru.pet.nzcheinenm.dto.request.ProductRequestDto;
 import ru.pet.nzcheinenm.dto.response.ProductResponseDto;
 import ru.pet.nzcheinenm.rest.swagger.Default200ApiResponse;
+import ru.pet.nzcheinenm.service.NewsService;
 import ru.pet.nzcheinenm.service.ProductService;
 
 
@@ -26,10 +28,12 @@ import ru.pet.nzcheinenm.service.ProductService;
 public class MagazineController {
     public static final String GET_PATH = "/products";
     public static final String SAVE_PATH = "/product";
+    public static final String SAVE_NEWS_PATH = "/news";
     public static final String SEND_TO_KAFKA_PATH = "/product-kafka";
 
     private final ProductService productService;
     private final ObjectMapper objectMapper;
+    private final NewsService newsService;
 
     @Default200ApiResponse
     @PreAuthorize("hasRole('ADMIN')")
@@ -64,6 +68,17 @@ public class MagazineController {
     ) throws JsonProcessingException {
         log.info("[START] Request to sendToKafka, product={}", objectMapper.writeValueAsString(requestDto));
         return productService.sendToKafka(requestDto);
+    }
+
+    @Default200ApiResponse
+    @PreAuthorize("hasRole('ADMIN')")
+    @Operation(description = "Сохранение информации по товарам")
+    @PostMapping(value = SAVE_NEWS_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Mono<ProductResponseDto> saveNews(
+            @RequestBody NewsRequestDto requestDto
+    ) throws JsonProcessingException {
+        log.info("[START] Request to saveNews, news={}", objectMapper.writeValueAsString(requestDto));
+        return newsService.saveNews(requestDto);
     }
 
 }

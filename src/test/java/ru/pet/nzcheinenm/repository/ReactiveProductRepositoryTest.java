@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.pet.nzcheinenm.BaseTest;
 import ru.pet.nzcheinenm.entity.Product;
+import ru.pet.nzcheinenm.types.StatusType;
 
 import java.time.LocalDateTime;
 
@@ -21,7 +22,7 @@ public class ReactiveProductRepositoryTest extends BaseTest {
         Product product = new Product();
         product.setId("123");
         product.setType("Product");
-        product.setStatus("FAILED");
+        product.setStatus(StatusType.FAILED);
         product.setExternalId("321");
         product.setCreatedDate(LocalDateTime.now());
 

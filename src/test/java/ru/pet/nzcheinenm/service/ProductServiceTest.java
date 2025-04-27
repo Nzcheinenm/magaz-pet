@@ -6,6 +6,7 @@ import reactor.core.publisher.Mono;
 import ru.pet.nzcheinenm.BaseTest;
 import ru.pet.nzcheinenm.dto.request.ProductRequestDto;
 import ru.pet.nzcheinenm.dto.response.ProductResponseDto;
+import ru.pet.nzcheinenm.types.StatusType;
 
 import java.util.UUID;
 
@@ -21,7 +22,7 @@ public class ProductServiceTest extends BaseTest {
         ProductRequestDto requestDto = ProductRequestDto.builder()
                 .externalId(Constants.EXTERNAL_ID)
                 .type(Constants.TYPE)
-                .status(Constants.STATUS)
+                .status(StatusType.FAILED)
                 .build();
 
         Mono<ProductResponseDto> result = productService.saveProduct(requestDto);
@@ -31,6 +32,5 @@ public class ProductServiceTest extends BaseTest {
     private static class Constants {
         public static final String EXTERNAL_ID = UUID.randomUUID().toString();
         public static final String TYPE = "product_test";
-        public static final String STATUS = "CREATED";
     }
 }
