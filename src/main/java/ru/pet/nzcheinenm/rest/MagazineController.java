@@ -14,6 +14,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import ru.pet.nzcheinenm.dto.request.NewsRequestDto;
 import ru.pet.nzcheinenm.dto.request.ProductRequestDto;
+import ru.pet.nzcheinenm.dto.response.NewsResponseDto;
 import ru.pet.nzcheinenm.dto.response.ProductResponseDto;
 import ru.pet.nzcheinenm.rest.swagger.Default200ApiResponse;
 import ru.pet.nzcheinenm.service.NewsService;
@@ -74,7 +75,7 @@ public class MagazineController {
     @PreAuthorize("hasRole('ADMIN')")
     @Operation(description = "Сохранение информации по товарам")
     @PostMapping(value = SAVE_NEWS_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Mono<ProductResponseDto> saveNews(
+    public Mono<NewsResponseDto> saveNews(
             @RequestBody NewsRequestDto requestDto
     ) throws JsonProcessingException {
         log.info("[START] Request to saveNews, news={}", objectMapper.writeValueAsString(requestDto));

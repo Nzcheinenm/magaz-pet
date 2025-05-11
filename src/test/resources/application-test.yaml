@@ -1,6 +1,8 @@
 magazine-service:
   service-name: magazine-service
   base-path: /api/v1
+  scheduler:
+    cron: 0 0 3 * * *
 
 preliquibase:
   sql-script-references: "classpath:database/preliquibase/schema.sql"
@@ -43,7 +45,7 @@ spring:
     password: ${spring.datasource.password}
     default-schema: ${spring.jpa.default_schema}
     change-log: "classpath:database/changelog/changelog.xml"
-    drop-first: false
+    drop-first: true
     driver-class-name: ${spring.datasource.driver-class-name}
   kafka:
     admin:

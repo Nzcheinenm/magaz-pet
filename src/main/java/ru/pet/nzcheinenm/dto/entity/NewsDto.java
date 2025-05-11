@@ -9,6 +9,7 @@ import java.time.LocalDate;
 public record NewsDto(
         @NotBlank
         String id,
+        String name,
         LocalDate dateNews,
         String description
 ) {

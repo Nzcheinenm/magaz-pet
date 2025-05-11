@@ -24,9 +24,9 @@ public class DatabaseProductService {
 
     private final ProductMapper productMapper;
 
-    public Mono<Product> save(ProductDto dto) {
+    public Mono<ProductDto> save(ProductDto dto) {
         Product product = productMapper.convert(dto);
-        return repository.save(product);
+        return repository.save(product).map(productMapper::convert);
     }
 
     public Flux<ProductDto> findAllByStatus(StatusType status) {
