@@ -55,6 +55,7 @@ dependencies {
 	implementation "org.springframework.boot:spring-boot-starter-data-redis-reactive"
 	annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 	compileOnly 'org.projectlombok:lombok-maven-plugin:1.18.20.0'
+
 	//migration
 	implementation 'org.liquibase:liquibase-core'
 	implementation group: 'net.lbruun.springboot', name: 'preliquibase-spring-boot-starter', version: '1.4.0'
@@ -85,6 +86,11 @@ dependencies {
 
 	//swagger
 	implementation "io.swagger.core.v3:swagger-annotations:${swaggerAnnotationsVersion}"
+
+	//java server faces
+	implementation platform('org.joinfaces:joinfaces-platform:5.4.5')
+	implementation 'org.joinfaces:faces-spring-boot-starter'
+
 
 	// test
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
