@@ -4,6 +4,10 @@ magazine-service:
   scheduler:
     cron: 0 0 3 * * *
 
+joinfaces:
+  faces:
+    project-stage: development
+
 preliquibase:
   sql-script-references: "classpath:database/preliquibase/schema.sql"
 
