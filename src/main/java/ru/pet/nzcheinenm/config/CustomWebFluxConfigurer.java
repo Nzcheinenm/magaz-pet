@@ -13,6 +13,6 @@ public class CustomWebFluxConfigurer implements WebFluxConfigurer {
         corsRegistry.addMapping("/**")
                 .allowedOrigins("*")
                 .allowedHeaders("*")
-                .allowedMethods("GET", "POST");
+                .allowedMethods("GET", "POST","OPTIONS","PUT");
     }
 }

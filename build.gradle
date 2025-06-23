@@ -88,9 +88,14 @@ dependencies {
 	implementation "io.swagger.core.v3:swagger-annotations:${swaggerAnnotationsVersion}"
 
 	//java server faces
-	implementation platform('org.joinfaces:joinfaces-platform:5.4.5')
-	implementation 'org.joinfaces:faces-spring-boot-starter'
-
+	implementation 'org.ocpsoft.rewrite:rewrite-servlet:3.4.1.Final'
+	implementation 'org.ocpsoft.rewrite:rewrite-integration-faces:3.4.1.Final'
+	implementation 'org.ocpsoft.rewrite:rewrite-config-prettyfaces:3.4.1.Final'
+	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper' // версия будет взята из зависимости tomcat-embed-core
+	implementation 'org.apache.myfaces.core:myfaces-impl:2.2.12'
+	implementation 'org.apache.myfaces.core:myfaces-api:2.2.12'
+	implementation 'org.primefaces:primefaces:6.1'
+	implementation("org.primefaces.themes:all-themes:1.0.10")
 
 	// test
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
