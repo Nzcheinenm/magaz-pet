@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link data-th-href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link data-th-href="@{/css/main.css}" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="row">
+        <div id="title">
+            <h1>Products</h1>
+        </div>
+        <table class="table table-striped" id="allProducts">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Status</th>
+                <th>CreatedDate</th>
+                <th>Email</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="result" data-th-each="prod : ${products}">
+                <td>[[${prod.id}]]</td>
+                <td>[[${prod.status}]]</td>
+                <td>[[${prod.createdDate}]]</td>
+                <td>[[${prod.email}]]</td>
+                <td>[[${prod.text}]]</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="submit">
+        <a class="button-click doctor-button" th:href="@{/hello-save}">Add new</a>
+    </div>
+
+
+</div>

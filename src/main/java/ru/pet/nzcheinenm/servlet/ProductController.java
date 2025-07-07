@@ -1,30 +1,30 @@
 package ru.pet.nzcheinenm.servlet;
 
-import org.ocpsoft.rewrite.annotation.Join;
-import org.ocpsoft.rewrite.el.ELBeanName;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-import ru.pet.nzcheinenm.entity.Product;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import ru.pet.nzcheinenm.dto.entity.ProductDto;
+import ru.pet.nzcheinenm.mapper.ProductMapper;
 import ru.pet.nzcheinenm.repository.ReactiveProductRepository;
 
-@Scope(value = "session")
-@Component(value = "productController")
-@ELBeanName(value = "productController")
-@Join(path = "/product", to = "/product/product-form.jsf")
+@Controller
+@RequiredArgsConstructor
 public class ProductController {
-	@Autowired
-	private ReactiveProductRepository productRepository;
+    private final ReactiveProductRepository productRepository;
+    private final ProductMapper productMapper;
 
-	private Product product = new Product();
+    @GetMapping("/hello-save")
+    public String save(Model model) {
+        return "hello-save";
+    }
 
-	public String save() {
-		productRepository.save(product);
-		product = new Product();
-		return "/product/product-list.xhtml?faces-redirect=true";
-	}
+    @PostMapping("/hello-save")
+    public String save(@ModelAttribute("product") ProductDto product) {
+        productRepository.save(productMapper.convert(product));
+        return "redirect:/hello-products#";
+    }
 
-	public Product getProduct() {
-		return product;
-	}
 }

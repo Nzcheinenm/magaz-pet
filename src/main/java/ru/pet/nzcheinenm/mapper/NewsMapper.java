@@ -8,7 +8,6 @@ import ru.pet.nzcheinenm.dto.response.NewsResponseDto;
 import ru.pet.nzcheinenm.entity.News;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Mapper(imports = {LocalDate.class, UUID.class})

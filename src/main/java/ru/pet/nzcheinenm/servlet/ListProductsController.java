@@ -1,44 +1,32 @@
 package ru.pet.nzcheinenm.servlet;
 
-import org.ocpsoft.rewrite.annotation.Join;
-import org.ocpsoft.rewrite.annotation.RequestAction;
-import org.ocpsoft.rewrite.el.ELBeanName;
-import org.ocpsoft.rewrite.faces.annotation.Deferred;
-import org.ocpsoft.rewrite.faces.annotation.IgnorePostback;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.thymeleaf.spring6.context.webflux.IReactiveDataDriverContextVariable;
+import org.thymeleaf.spring6.context.webflux.ReactiveDataDriverContextVariable;
 import ru.pet.nzcheinenm.entity.Product;
 import ru.pet.nzcheinenm.repository.ReactiveProductRepository;
 
-import java.util.List;
-
-@Scope (value = "session")
-@Component (value = "listProducts")
-@ELBeanName(value = "listProducts")
-@Join(path = "/", to = "/product/product-list.jsf")
+@Controller
+@RequiredArgsConstructor
 public class ListProductsController {
-	@Autowired
-	private ReactiveProductRepository productRepository;
+    private final ReactiveProductRepository productRepository;
 
-	private List<Product> products;
+    @GetMapping("/hello-products")
+    public String getProducts(Model model) {
+        IReactiveDataDriverContextVariable reactiveDataDrivenMode =
+                new ReactiveDataDriverContextVariable(productRepository.findAll(), 1);
 
-	@Deferred
-	@RequestAction
-	@IgnorePostback
-	public void loadData() {
-		products = productRepository.findAll()
-				.toStream()
-				.toList();
-	}
+        model.addAttribute("products", reactiveDataDrivenMode);
 
-	public List<Product> getProducts() {
-		return products;
-	}
+        return "hello-products";
+    }
 
-	public String delete(Product product) {
-		productRepository.delete(product);
-		loadData();
-		return null;
-	}
+    public String delete(Product product) {
+        productRepository.delete(product);
+//		loadData();
+        return null;
+    }
 }
