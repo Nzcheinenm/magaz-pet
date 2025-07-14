@@ -17,7 +17,7 @@
             <column name="message_id" type="varchar(80)">
                 <constraints unique="true"/>
             </column>
-            <column name="created_date" type="datetime">
+            <column name="created_date" type="datetime" defaultValue="2020.10.10 10:10:10">
                 <constraints nullable="false"/>
             </column>
             <column name="phone" type="varchar(30)"/>

@@ -81,5 +81,4 @@ public class MagazineController {
         log.info("[START] Request to saveNews, news={}", objectMapper.writeValueAsString(requestDto));
         return newsService.saveNews(requestDto);
     }
-
 }

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link data-th-href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link data-th-href="@{/css/main.css}" rel="stylesheet">
+</head>
+<body>
+
+<div>
+    <form action="#" th:action="@{/save}" th:object="${product}" method="post">
+        <label for="id">Id:</label>
+        <input type="text" id="id" th:field="*{id}"/>
+        <br/>
+        <label for="text">Text:</label>
+        <input type="text" id="text" th:field="*{text}"/>
+        <br/>
+        <label for="text">Status:</label>
+        <input type="text" id="status" th:field="*{status}"/>
+        <br/>
+        <label for="text">Type:</label>
+        <input type="text" id="type" th:field="*{type}"/>
+        <br/>
+        <label for="externalId">ExternalId:</label>
+        <input type="text" id="externalId" th:field="*{externalId}"/>
+        <br/>
+        <button type="submit">Создать</button>
+    </form>
+</div>
+</body>

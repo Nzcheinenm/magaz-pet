@@ -14,14 +14,12 @@ import ru.pet.nzcheinenm.repository.ReactiveProductRepository;
 public class ListProductsController {
     private final ReactiveProductRepository productRepository;
 
-    @GetMapping("/hello-products")
+    @GetMapping("/home")
     public String getProducts(Model model) {
         IReactiveDataDriverContextVariable reactiveDataDrivenMode =
                 new ReactiveDataDriverContextVariable(productRepository.findAll(), 1);
-
         model.addAttribute("products", reactiveDataDrivenMode);
-
-        return "hello-products";
+        return "home";
     }
 
     public String delete(Product product) {
