@@ -10,10 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.web.bind.annotation.*;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 import ru.pet.nzcheinenm.dto.request.NewsRequestDto;
 import ru.pet.nzcheinenm.dto.request.ProductRequestDto;
 import ru.pet.nzcheinenm.dto.response.NewsResponseDto;
@@ -72,7 +69,8 @@ public class MagazineController {
             @RequestBody ProductRequestDto requestDto
     ) throws JsonProcessingException {
         log.info("[START] Request to sendToKafka, product={}", objectMapper.writeValueAsString(requestDto));
-        return productService.sendToKafka(requestDto);
+        productService.sendToKafka(requestDto);
+        return ResponseEntity.noContent().build();
     }
 
     @Default200ApiResponse

@@ -6,19 +6,20 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.task.AsyncTaskExecutor;
 import org.springframework.core.task.support.TaskExecutorAdapter;
 
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+@Configuration
 public class ExecutorConfig {
+    // Use virtual threads for Tomcat
     @Bean
-    AsyncTaskExecutor applicationTaskExecutor() {
-        // enable async servlet support
-        ExecutorService executorService = Executors.newVirtualThreadPerTaskExecutor();
-        return new TaskExecutorAdapter(executorService);
+    TomcatProtocolHandlerCustomizer<?> protocolHandlerVirtualThreadsCustomizer() {
+        return protocolHandler ->
+                protocolHandler.setExecutor(Executors.newVirtualThreadPerTaskExecutor());
     }
 
+    // Use virtual threads for @Async
     @Bean
-    TomcatProtocolHandlerCustomizer<?> protocolHandlerVirtualThreadExecutorCustomizer() {
-        return protocolHandler -> protocolHandler.setExecutor(Executors.newVirtualThreadPerTaskExecutor());
+    public AsyncTaskExecutor asyncTaskExecutor() {
+        return new TaskExecutorAdapter(Executors.newVirtualThreadPerTaskExecutor());
     }
 }

@@ -2,9 +2,6 @@ package ru.pet.nzcheinenm.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
-import reactor.kafka.sender.SenderResult;
 import ru.pet.nzcheinenm.dto.entity.ProductDto;
 import ru.pet.nzcheinenm.dto.request.ProductRequestDto;
 import ru.pet.nzcheinenm.dto.request.ProductRequestKafkaDto;

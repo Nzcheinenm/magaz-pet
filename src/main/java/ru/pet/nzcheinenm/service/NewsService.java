@@ -2,7 +2,6 @@ package ru.pet.nzcheinenm.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import reactor.core.publisher.Mono;
 import ru.pet.nzcheinenm.dto.entity.NewsDto;
 import ru.pet.nzcheinenm.dto.request.NewsRequestDto;
 import ru.pet.nzcheinenm.dto.response.NewsResponseDto;

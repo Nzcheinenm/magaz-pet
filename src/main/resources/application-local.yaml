@@ -4,6 +4,11 @@ magazine-service:
   scheduler:
     cron: 0 0 3 * * *
 
+server:
+  tomcat:
+    threads:
+      max: 200
+
 preliquibase:
   sql-script-references: "classpath:database/preliquibase/schema.sql"
 
@@ -25,7 +30,7 @@ spring:
       ddl-auto: none
     show-sql: false
     open-in-view: false
-    database-platform: org.hibernate.dialect.PostgreSQL95Dialect
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
     properties:
       hibernate:
         show_sql: false
