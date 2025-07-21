@@ -38,9 +38,9 @@ public class BaseTest {
         registry.add("spring.datasource.password", postgreSQLContainer::getPassword);
         registry.add("spring.jpa.show-sql", () -> "true");
 
-        registry.add("spring.r2dbc.url", () -> jdbcUrl.replace("jdbc", "r2dbc"));
-        registry.add("spring.r2dbc.username", postgreSQLContainer::getUsername);
-        registry.add("spring.r2dbc.password", postgreSQLContainer::getPassword);
+//        registry.add("spring.r2dbc.url", () -> jdbcUrl.replace("jdbc", "r2dbc"));
+//        registry.add("spring.r2dbc.username", postgreSQLContainer::getUsername);
+//        registry.add("spring.r2dbc.password", postgreSQLContainer::getPassword);
     }
 }
 

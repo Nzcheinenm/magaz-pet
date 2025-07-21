@@ -14,8 +14,8 @@ public class NewsService {
     private DatabaseNewsService service;
     private NewsMapper mapper;
 
-    public Mono<NewsResponseDto> saveNews(NewsRequestDto requestDto) {
-        Mono<NewsDto> entity = service.save(mapper.convertRequest(requestDto));
-        return entity.map(x -> mapper.convertResponse(x));
+    public NewsResponseDto saveNews(NewsRequestDto requestDto) {
+        NewsDto entity = service.save(mapper.convertRequest(requestDto));
+        return mapper.convertResponse(entity);
     }
 }

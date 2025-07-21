@@ -16,15 +16,14 @@ public class ProductProducerService {
     private final ReactiveKafkaProducerTemplate<String, ProductRequestKafkaDto> productTemplate;
     private final KafkaAdminProperty kafkaAdminProperty;
 
-    public Mono<SenderResult<Void>> sendProductToKafka(ProductRequestKafkaDto productRequestKafkaDto) {
+    public void sendProductToKafka(ProductRequestKafkaDto productRequestKafkaDto) {
         String topicName = kafkaAdminProperty.getTopic().getTopicName();
         try {
             Mono<SenderResult<Void>> result = productTemplate.send(topicName, productRequestKafkaDto);
             log.info("[SUCCESS] Send message to {} topic. ", topicName);
-            return result;
         } catch (Exception e) {
             log.error("[FAILED] Send message to {} topic. ", topicName);
-            return Mono.error(e);
+            throw e;
         }
     }
 }

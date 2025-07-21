@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.thymeleaf.spring6.context.webflux.IReactiveDataDriverContextVariable;
 import org.thymeleaf.spring6.context.webflux.ReactiveDataDriverContextVariable;
 import ru.pet.nzcheinenm.entity.Product;
-import ru.pet.nzcheinenm.repository.ReactiveProductRepository;
+import ru.pet.nzcheinenm.repository.ProductRepository;
 
 @Controller
 @RequiredArgsConstructor
 public class ListProductsController {
-    private final ReactiveProductRepository productRepository;
+    private final ProductRepository productRepository;
 
     @GetMapping("/home")
     public String getProducts(Model model) {

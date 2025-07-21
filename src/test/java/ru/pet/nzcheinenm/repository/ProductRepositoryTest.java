@@ -8,16 +8,15 @@ import ru.pet.nzcheinenm.types.StatusType;
 
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class ReactiveProductRepositoryTest extends BaseTest {
+public class ProductRepositoryTest extends BaseTest {
     @Autowired
-    ReactiveProductRepository repository;
+    ProductRepository repository;
 
     @Test
     void smokeTest() {
-        assertNull(repository.findAll().blockFirst());
+        assertTrue(repository.findAll().isEmpty());
 
         Product product = new Product();
         product.setId("123");
@@ -26,6 +25,6 @@ public class ReactiveProductRepositoryTest extends BaseTest {
         product.setExternalId("321");
         product.setCreatedDate(LocalDateTime.now());
 
-        assertNotNull(repository.save(product).block());
+        assertNotNull(repository.save(product));
     }
 }

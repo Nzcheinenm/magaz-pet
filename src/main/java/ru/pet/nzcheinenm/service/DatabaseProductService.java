@@ -11,36 +11,40 @@ import reactor.core.publisher.Mono;
 import ru.pet.nzcheinenm.dto.entity.ProductDto;
 import ru.pet.nzcheinenm.entity.Product;
 import ru.pet.nzcheinenm.mapper.ProductMapper;
-import ru.pet.nzcheinenm.repository.ReactiveProductRepository;
+import ru.pet.nzcheinenm.repository.ProductRepository;
 import ru.pet.nzcheinenm.types.StatusType;
 
+import java.util.List;
 import java.util.Objects;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
 public class DatabaseProductService {
-    private final ReactiveProductRepository repository;
+    private final ProductRepository repository;
 
     private final ProductMapper productMapper;
 
-    public Mono<ProductDto> save(ProductDto dto) {
+    public ProductDto save(ProductDto dto) {
         Product product = productMapper.convert(dto);
-        return repository.save(product).map(productMapper::convert);
+        return productMapper.convert(repository.save(product));
     }
 
-    public Flux<ProductDto> findAllByStatus(StatusType status) {
-        return repository.findAllByStatus(status.name()).map(productMapper::convert);
+    public List<ProductDto> findAllByStatus(StatusType status) {
+        return repository.findAllByStatus(status.name()).stream()
+                .map(productMapper::convert)
+                .toList();
     }
 
-    public Flux<ProductDto> findAllByExternalIdAndGroupAndPrice(@NotBlank String externalId,
+    public List<ProductDto> findAllByExternalIdAndGroupAndPrice(@NotBlank String externalId,
                                                                 String group,
                                                                 Integer price) {
         var probe = constructProduct(externalId, group, price)
                 .build();
         Example<Product> productExample = Example.of(probe);
-        return repository.findAll(productExample)
-                .map(productMapper::convert);
+        return repository.findAll(productExample).stream()
+                .map(productMapper::convert)
+                .toList();
     }
 
     private Product.ProductBuilder constructProduct(String externalId, String group, Integer price) {

@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import reactor.core.publisher.Mono;
 import ru.pet.nzcheinenm.dto.entity.ProductDto;
 import ru.pet.nzcheinenm.mapper.ProductMapper;
-import ru.pet.nzcheinenm.repository.ReactiveProductRepository;
+import ru.pet.nzcheinenm.repository.ProductRepository;
 
 @Controller
 @RequiredArgsConstructor
 public class ProductController {
-    private final ReactiveProductRepository productRepository;
+    private final ProductRepository productRepository;
     private final ProductMapper productMapper;
 
     @GetMapping("/save")
@@ -25,11 +25,12 @@ public class ProductController {
     }
 
     @PostMapping("/save")
-    public Mono<String> save(@ModelAttribute("product") ProductDto product, BindingResult bindingResult) {
+    public String save(@ModelAttribute("product") ProductDto product, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return Mono.just("home");
+            return "home";
         } else {
-            return productRepository.save(productMapper.convert(product)).thenReturn("redirect:/home");
+            productRepository.save(productMapper.convert(product));
+            return "redirect:/home";
         }
     }
 }

@@ -25,8 +25,8 @@ public class ProductServiceTest extends BaseTest {
                 .status(StatusType.FAILED)
                 .build();
 
-        Mono<ProductResponseDto> result = productService.saveProduct(requestDto);
-        assertNotNull(result.block());
+        ProductResponseDto result = productService.saveProduct(requestDto);
+        assertNotNull(result);
     }
 
     private static class Constants {

@@ -7,7 +7,9 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
@@ -20,10 +22,12 @@ import ru.pet.nzcheinenm.rest.swagger.Default200ApiResponse;
 import ru.pet.nzcheinenm.service.NewsService;
 import ru.pet.nzcheinenm.service.ProductService;
 
+import java.util.List;
+
 
 @Slf4j
 @RestController
-@EnableWebFluxSecurity
+@EnableWebSecurity
 @RequiredArgsConstructor
 @Tag(name = "Товары", description = "API для товаров")
 public class MagazineController {
@@ -40,7 +44,7 @@ public class MagazineController {
     @PreAuthorize("hasRole('ADMIN')")
     @Operation(description = "Получение информации по товарам")
     @GetMapping(value = GET_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Flux<ProductResponseDto> getProducts(
+    public List<ProductResponseDto> getProducts(
             @RequestParam(required = false) Integer price,
             @RequestParam(required = false) String group,
             @RequestParam String externalId
@@ -53,7 +57,7 @@ public class MagazineController {
     @PreAuthorize("hasRole('ADMIN')")
     @Operation(description = "Сохранение информации по товарам")
     @PostMapping(value = SAVE_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Mono<ProductResponseDto> saveProduct(
+    public ProductResponseDto saveProduct(
             @RequestBody ProductRequestDto requestDto
     ) throws JsonProcessingException {
         log.info("[START] Request to saveProduct, product={}", objectMapper.writeValueAsString(requestDto));
@@ -64,7 +68,7 @@ public class MagazineController {
     @PreAuthorize("hasRole('ADMIN')")
     @Operation(description = "Передача информации в канал кафки по товарам")
     @PostMapping(value = SEND_TO_KAFKA_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Mono<Void> sendToKafka(
+    public ResponseEntity<Void> sendToKafka(
             @RequestBody ProductRequestDto requestDto
     ) throws JsonProcessingException {
         log.info("[START] Request to sendToKafka, product={}", objectMapper.writeValueAsString(requestDto));
@@ -75,7 +79,7 @@ public class MagazineController {
     @PreAuthorize("hasRole('ADMIN')")
     @Operation(description = "Сохранение информации по товарам")
     @PostMapping(value = SAVE_NEWS_PATH, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Mono<NewsResponseDto> saveNews(
+    public NewsResponseDto saveNews(
             @RequestBody NewsRequestDto requestDto
     ) throws JsonProcessingException {
         log.info("[START] Request to saveNews, news={}", objectMapper.writeValueAsString(requestDto));

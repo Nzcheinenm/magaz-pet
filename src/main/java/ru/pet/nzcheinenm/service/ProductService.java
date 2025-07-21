@@ -12,6 +12,8 @@ import ru.pet.nzcheinenm.dto.response.ProductResponseDto;
 import ru.pet.nzcheinenm.mapper.ProductMapper;
 import ru.pet.nzcheinenm.service.kafka.ProductProducerService;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ProductService {
@@ -19,22 +21,21 @@ public class ProductService {
     private final DatabaseProductService databaseProductService;
     private final ProductProducerService productProducerService;
 
-    public Flux<ProductResponseDto> getProducts(Integer price,
+    public List<ProductResponseDto> getProducts(Integer price,
                                                 String group,
                                                 String externalId) {
-        Flux<ProductDto> products = databaseProductService.findAllByExternalIdAndGroupAndPrice(externalId, group, price);
-        return products.map(productMapper::convertToResponse);
+        List<ProductDto> products = databaseProductService.findAllByExternalIdAndGroupAndPrice(externalId, group, price);
+        return products.stream().map(productMapper::convertToResponse).toList();
     }
 
-    public Mono<ProductResponseDto> saveProduct(ProductRequestDto requestDto) {
+    public ProductResponseDto saveProduct(ProductRequestDto requestDto) {
         ProductDto productDto = productMapper.convertRequest(requestDto);
-        return databaseProductService.save(productDto)
-                .map(product -> productMapper.convertToResponse(productDto));
+        databaseProductService.save(productDto);
+        return productMapper.convertToResponse(productDto);
     }
 
-    public Mono<Void> sendToKafka(ProductRequestDto requestDto) {
+    public void sendToKafka(ProductRequestDto requestDto) {
         ProductRequestKafkaDto requestKafkaDto = productMapper.convertRequestToKafka(requestDto);
-        Mono<SenderResult<Void>> senderResult = productProducerService.sendProductToKafka(requestKafkaDto);
-        return senderResult.map(SenderResult::correlationMetadata);
+        productProducerService.sendProductToKafka(requestKafkaDto);
     }
 }
