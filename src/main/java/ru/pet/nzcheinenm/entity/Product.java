@@ -14,10 +14,8 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
-@Table
+@Table(name = "product")
 @SuperBuilder
-@NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class Product extends BaseEntity {
     String type;

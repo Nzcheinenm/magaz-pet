@@ -29,7 +29,7 @@ public class DatabaseProductService {
     }
 
     public List<ProductDto> findAllByStatus(StatusType status) {
-        return repository.findAllByStatus(status.name()).stream()
+        return repository.findAllByStatus(status).stream()
                 .map(productMapper::convert)
                 .toList();
     }
