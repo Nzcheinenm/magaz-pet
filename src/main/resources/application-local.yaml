@@ -42,7 +42,7 @@ spring:
     password: ${spring.datasource.password}
     default-schema: ${spring.jpa.default_schema}
     change-log: "classpath:database/changelog/changelog.xml"
-    drop-first: true
+    drop-first: false
     driver-class-name: ${spring.datasource.driver-class-name}
   kafka:
     admin:

@@ -8,37 +8,48 @@
     <link data-th-href="@{/css/main.css}" rel="stylesheet">
 </head>
 <body>
-
+<header>
+    <div class="logo">
+        <a href="/">
+            <img alt="logo" height="60px" th:src="@{/image/logo.svg}" width="60">
+        </a>
+    </div>
+    <div class="menu">
+        <ul>
+            <li><a class="button-click doctor-button" th:href="@{/save}">New product</a></li>
+            <li><a class="button-click doctor-button" th:href="@{/home}">List products</a></li>
+        </ul>
+    </div>
+    <div class="tel">
+        <a href="tel:88000000000">8 800 0000 000</a>
+    </div>
+</header>
 <div class="container">
-
-    <div class="row">
-        <div id="title">
-            <h1>Products</h1>
-        </div>
-        <table class="table table-striped" id="allProducts">
-            <thead>
-            <tr>
-                <th>Id</th>
-                <th>Status</th>
-                <th>CreatedDate</th>
-                <th>Email</th>
-                <th>Description</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr class="result" data-th-each="prod : ${products}">
-                <td>[[${prod.id}]]</td>
-                <td>[[${prod.status}]]</td>
-                <td>[[${prod.createdDate}]]</td>
-                <td>[[${prod.email}]]</td>
-                <td>[[${prod.text}]]</td>
-            </tr>
-            </tbody>
-        </table>
+    <div id="title">
+        <h1>Products</h1>
     </div>
-    <div class="submit">
-        <a class="button-click doctor-button" th:href="@{/save}">Add new</a>
+    <div>
+        <ul class="products clearfix">
+            <li class="product-wrapper" id="allProducts" th:each="prod : ${products}">
+                <span class="product">
+                    <img alt="logo" th:src="@{/image/logo.svg}">
+                    <p>
+                        <span th:text="${prod.id}"></span>
+                    </p>
+                    <span th:text="${prod.status}"></span>
+                    <span th:text="${prod.createdDate}"></span>
+                    <span th:text="${prod.email}"></span>
+                    <span th:text="${prod.text}"></span>
+                </span>
+            </li>
+        </ul>
     </div>
-
 
 </div>
+<footer>
+    <p>Copyright ©
+        <time datetime="2025">2025</time>
+        nzcheinenm
+    </p>
+</footer>
+</body>

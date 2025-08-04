@@ -8,7 +8,22 @@
     <link data-th-href="@{/css/main.css}" rel="stylesheet">
 </head>
 <body>
-
+<header>
+    <div class="logo">
+        <a href="/">
+            <img alt="logo" height="60px" th:src="@{/image/logo.svg}" width="60">
+        </a>
+    </div>
+    <div class="menu">
+        <ul>
+            <li><a class="button-click doctor-button" th:href="@{/save}">New product</a></li>
+            <li><a class="button-click doctor-button" th:href="@{/home}">List products</a></li>
+        </ul>
+    </div>
+    <div class="tel">
+        <a href="tel:88000000000">8 800 0000 000</a>
+    </div>
+</header>
 <div>
     <form action="#" th:action="@{/save}" th:object="${product}" method="post">
         <label for="id">Id:</label>
@@ -29,4 +44,10 @@
         <button type="submit">Создать</button>
     </form>
 </div>
+<footer>
+    <p>Copyright ©
+        <time datetime="2025">2025</time>
+        nzcheinenm
+    </p>
+</footer>
 </body>
