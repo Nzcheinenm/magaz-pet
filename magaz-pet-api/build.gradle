@@ -1,0 +1,59 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.2.6'
+    id 'io.spring.dependency-management' version '1.1.5'
+}
+
+group = 'ru.pet'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+bootRun {
+    args = ["--spring.profiles.active=local"]
+    jvmArgs = ["-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005"]
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+compileJava {
+    options.compilerArgs += [
+            '-Amapstruct.suppressGeneratorTimestamp=true',
+            '-Amapstruct.suppressGeneratorVersionInfoComment=true',
+            '-Amapstruct.verbose=true',
+            '-Amapstruct.unmappedTargetPolicy=ERROR',
+            '-Amapstruct.defaultComponentModel=spring'
+    ]
+}
+
+dependencies {
+    // spring boot
+    // https://mvnrepository.com/artifact/jakarta.validation/jakarta.validation-api
+    implementation("jakarta.validation:jakarta.validation-api:3.1.0")
+    compileOnly 'org.projectlombok:lombok-maven-plugin:1.18.20.0'
+
+    // apache utils
+    implementation "org.apache.commons:commons-collections4:${apacheCommonsCollectionsVersion}"
+
+    //swagger
+    implementation "io.swagger.core.v3:swagger-annotations:${swaggerAnnotationsVersion}"
+
+    // test
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
