@@ -1,4 +1,4 @@
-package ru.pet.nzcheinenm.service;
+package ru.pet.nzcheinenm.service.database;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.constraints.NotBlank;

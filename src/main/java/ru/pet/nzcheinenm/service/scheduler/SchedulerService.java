@@ -1,10 +1,11 @@
-package ru.pet.nzcheinenm.service;
+package ru.pet.nzcheinenm.service.scheduler;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import ru.pet.nzcheinenm.service.database.DatabaseProductService;
 import ru.pet.nzcheinenm.types.StatusType;
 
 @Slf4j

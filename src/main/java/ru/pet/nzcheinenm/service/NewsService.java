@@ -3,19 +3,19 @@ package ru.pet.nzcheinenm.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
-import ru.pet.nzcheinenm.dto.entity.NewsDto;
 import ru.pet.nzcheinenm.dto.request.NewsRequestDto;
 import ru.pet.nzcheinenm.dto.response.NewsResponseDto;
 import ru.pet.nzcheinenm.mapper.NewsMapper;
+import ru.pet.nzcheinenm.service.database.DatabaseNewsService;
 
 @Service
 @RequiredArgsConstructor
 public class NewsService {
-    private DatabaseNewsService service;
-    private NewsMapper mapper;
+    private final DatabaseNewsService service;
+    private final NewsMapper mapper;
 
     public Mono<NewsResponseDto> saveNews(NewsRequestDto requestDto) {
-        Mono<NewsDto> entity = service.save(mapper.convertRequest(requestDto));
-        return entity.map(x -> mapper.convertResponse(x));
+        return service.save(mapper.convertRequest(requestDto))
+                .map(mapper::convertResponse);
     }
 }

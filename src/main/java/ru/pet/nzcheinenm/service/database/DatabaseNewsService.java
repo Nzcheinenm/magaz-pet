@@ -1,4 +1,4 @@
-package ru.pet.nzcheinenm.service;
+package ru.pet.nzcheinenm.service.database;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

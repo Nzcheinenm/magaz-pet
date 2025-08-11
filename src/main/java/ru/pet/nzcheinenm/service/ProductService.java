@@ -10,6 +10,7 @@ import ru.pet.nzcheinenm.dto.request.ProductRequestDto;
 import ru.pet.nzcheinenm.dto.request.ProductRequestKafkaDto;
 import ru.pet.nzcheinenm.dto.response.ProductResponseDto;
 import ru.pet.nzcheinenm.mapper.ProductMapper;
+import ru.pet.nzcheinenm.service.database.DatabaseProductService;
 import ru.pet.nzcheinenm.service.kafka.ProductProducerService;
 
 @Service
