@@ -104,6 +104,7 @@ dependencies {
     testImplementation 'org.testcontainers:postgresql:1.20.4'
     testImplementation 'org.testcontainers:testcontainers:1.20.4'
     testImplementation 'org.testcontainers:kafka:1.20.4'
+    testRuntimeOnly 'org.projectlombok:lombok-maven-plugin:1.18.20.0'
 }
 
 tasks.named('test') {

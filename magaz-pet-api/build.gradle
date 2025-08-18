@@ -40,7 +40,6 @@ compileJava {
 
 dependencies {
     // spring boot
-    // https://mvnrepository.com/artifact/jakarta.validation/jakarta.validation-api
     implementation("jakarta.validation:jakarta.validation-api:3.1.0")
     compileOnly 'org.projectlombok:lombok-maven-plugin:1.18.20.0'
 

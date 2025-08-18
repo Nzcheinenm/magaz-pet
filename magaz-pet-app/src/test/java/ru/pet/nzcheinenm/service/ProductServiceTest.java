@@ -18,12 +18,9 @@ public class ProductServiceTest extends BaseTest {
     ProductService productService;
 
     @Test
-    public void saveProductTest() {
-        ProductRequestDto requestDto = ProductRequestDto.builder()
-                .externalId(Constants.EXTERNAL_ID)
-                .type(Constants.TYPE)
-                .status(StatusType.FAILED)
-                .build();
+    public void product_success_save() {
+        ProductRequestDto requestDto = new ProductRequestDto(Constants.TYPE,StatusType.FAILED,null,
+                null,null,Constants.EXTERNAL_ID,null,10);
 
         Mono<ProductResponseDto> result = productService.saveProduct(requestDto);
         assertNotNull(result.block());
