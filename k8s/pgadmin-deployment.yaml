@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pgadmin4-deployment
+  namespace: default
+  labels:
+    app: pgadmin4
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pgadmin4
+  template:
+    metadata:
+      labels:
+        app: pgadmin4
+    spec:
+      serviceAccount: postgres
+      containers:
+        # This is the official pgAdmin 4 container
+        - image: dpage/pgadmin4
+          name: pgadmin4
+          env:
+            - name: PGADMIN_DEFAULT_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  name: pgadmin-console
+                  key: postgres
+            - name: PGADMIN_DEFAULT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: pgadmin-console
+                  key: postgres
+          ports:
+            - containerPort: 80
+              name: pgadmin4
+        - image: gcr.io/cloudsql-docker/gce-proxy:1.14
+          imagePullPolicy: Always
+          name: cloudsql-proxy
+          securityContext:
+            runAsUser: 2  # non-root user
+            allowPrivilegeEscalation: false
