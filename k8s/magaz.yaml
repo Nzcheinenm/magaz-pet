@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: magaz-pet
+  labels:
+    app: magaz-pet
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: magaz-pet
+  template:
+    metadata:
+      labels:
+        app: magaz-pet
+    spec:
+      nodeName: worker2.k8s.dkononov
+      containers:
+        - name: magaz-pet
+          image: nzcheinenm/magaz-pet
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://postgres-service:5432/tm?createDatabaseIfNotExist=true
+            - name: SPRING_DATASOURCE_USERNAME
+              value: postgres
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: postgres
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: magaz-pet-app
+spec:
+  type: LoadBalancer
+  selector:
+    app: magaz-pet
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
