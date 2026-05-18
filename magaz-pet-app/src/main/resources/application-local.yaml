@@ -64,6 +64,12 @@ spring:
       max-poll-records: 500
     security:
       protocol: PLAINTEXT
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: rabbit
+    password: rabbit
+
 
   data:
     redis:
